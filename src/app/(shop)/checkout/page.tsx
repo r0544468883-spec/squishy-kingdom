@@ -67,7 +67,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 md:py-12">
-      <h1 className="font-bubble text-2xl md:text-3xl text-kingdom-charcoal text-center mb-8">
+      <h1 className="font-heading text-2xl md:text-3xl text-kingdom-charcoal text-center mb-8">
         תשלום מאובטח
       </h1>
 
@@ -91,7 +91,7 @@ export default function CheckoutPage() {
       {/* Step 1: Customer Details */}
       {step === 1 && (
         <div className="space-y-4">
-          <h2 className="font-bubble text-xl text-kingdom-charcoal mb-4">פרטי הלקוח</h2>
+          <h2 className="font-heading text-xl text-kingdom-charcoal mb-4">פרטי הלקוח</h2>
           <div>
             <label className="block text-sm text-kingdom-charcoal/70 mb-1">שם מלא *</label>
             <input type="text" value={name} onChange={e => setName(e.target.value)} className={inputClass} placeholder="הכניסו שם מלא" />
@@ -123,7 +123,7 @@ export default function CheckoutPage() {
       {/* Step 2: Shipping */}
       {step === 2 && (
         <div className="space-y-4">
-          <h2 className="font-bubble text-xl text-kingdom-charcoal mb-4">אופן משלוח</h2>
+          <h2 className="font-heading text-xl text-kingdom-charcoal mb-4">אופן משלוח</h2>
 
           <div className="space-y-3">
             <button
@@ -190,7 +190,7 @@ export default function CheckoutPage() {
       {/* Step 3: Payment */}
       {step === 3 && (
         <div className="space-y-6">
-          <h2 className="font-bubble text-xl text-kingdom-charcoal mb-4">סיכום ותשלום</h2>
+          <h2 className="font-heading text-xl text-kingdom-charcoal mb-4">סיכום ותשלום</h2>
 
           {/* Order Summary */}
           <div className="bg-white rounded-2xl border-2 border-kingdom-gold/20 p-4 space-y-3">

@@ -10,7 +10,7 @@ export default function KingdomFooter() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Crown className="w-6 h-6 text-kingdom-gold" />
-              <span className="font-bubble text-xl text-kingdom-gold">הממלכה של עדי</span>
+              <span className="font-heading text-xl text-kingdom-gold">הממלכה של עדי</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               חנות הטרנדים הסודית של עדי — סקווישים, פידג'טס, נידו ועוד.
@@ -20,7 +20,7 @@ export default function KingdomFooter() {
 
           {/* Links */}
           <div>
-            <h3 className="font-bubble text-kingdom-gold mb-4">ניווט מהיר</h3>
+            <h3 className="font-heading text-kingdom-gold mb-4">ניווט מהיר</h3>
             <div className="flex flex-col gap-2">
               <Link href="/" className="text-white/60 hover:text-kingdom-gold transition-colors text-sm">ראשי</Link>
               <Link href="/products" className="text-white/60 hover:text-kingdom-gold transition-colors text-sm">החנות</Link>
@@ -31,7 +31,7 @@ export default function KingdomFooter() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bubble text-kingdom-gold mb-4">צרו קשר</h3>
+            <h3 className="font-heading text-kingdom-gold mb-4">צרו קשר</h3>
             <div className="flex flex-col gap-3">
               <a
                 href="https://wa.me/972XXXXXXXXX"

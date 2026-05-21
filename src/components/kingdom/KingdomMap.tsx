@@ -2,50 +2,48 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Crown, Sparkles, TreePine, Castle, Mountain, Waves, Star } from 'lucide-react'
+import { Castle, TreePine, Mountain, Star, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { Category } from '@/types'
 import AdiGuide from './AdiGuide'
+import { springPlayful } from '@/components/motion'
 
 interface KingdomMapProps {
   categories: Category[]
 }
 
-const zoneStyles = [
+const zoneConfigs = [
   {
-    bg: 'from-pink-400/20 to-rose-300/20',
-    border: 'border-pink-400/50',
-    hoverBg: 'hover:from-pink-400/30 hover:to-rose-300/30',
+    gradient: 'from-pink-200/60 to-rose-100/60',
+    border: 'border-pink-300',
     icon: Castle,
     emoji: '🏰',
-    position: 'col-span-2 row-span-2',
     terrain: 'טירת הסקווישים',
+    span: 'col-span-2 row-span-2',
   },
   {
-    bg: 'from-emerald-400/20 to-green-300/20',
-    border: 'border-emerald-400/50',
-    hoverBg: 'hover:from-emerald-400/30 hover:to-green-300/30',
+    gradient: 'from-emerald-200/60 to-green-100/60',
+    border: 'border-emerald-300',
     icon: TreePine,
     emoji: '🌲',
-    position: 'col-span-2',
     terrain: 'יער הנמתחים',
+    span: 'col-span-2',
   },
   {
-    bg: 'from-violet-400/20 to-purple-300/20',
-    border: 'border-violet-400/50',
-    hoverBg: 'hover:from-violet-400/30 hover:to-purple-300/30',
+    gradient: 'from-violet-200/60 to-purple-100/60',
+    border: 'border-violet-300',
     icon: Mountain,
     emoji: '🎁',
-    position: 'col-span-2',
     terrain: 'הר המארזים',
+    span: 'col-span-2',
   },
   {
-    bg: 'from-amber-400/20 to-yellow-300/20',
-    border: 'border-amber-400/50',
-    hoverBg: 'hover:from-amber-400/30 hover:to-yellow-300/30',
+    gradient: 'from-amber-200/60 to-yellow-100/60',
+    border: 'border-amber-300',
     icon: Star,
     emoji: '✨',
-    position: 'col-span-2 row-span-2',
     terrain: 'מערת ההפתעות',
+    span: 'col-span-2 row-span-2',
   },
 ]
 
@@ -54,15 +52,16 @@ export default function KingdomMap({ categories }: KingdomMapProps) {
 
   return (
     <div className="relative">
-      {/* Map Title */}
       <div className="text-center mb-8">
-        <h2 className="font-bubble text-3xl md:text-5xl text-kingdom-charcoal mb-2">
-          מפת הממלכה
-        </h2>
-        <p className="text-kingdom-charcoal/50 font-fun">לחצו על טריטוריה כדי לחקור אותה!</p>
+        <h2 className="text-section text-kingdom-charcoal">מפת הממלכה</h2>
+        <div className="flex items-center justify-center gap-2 mt-3">
+          <div className="w-10 h-0.5 bg-kingdom-red/20 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-l from-kingdom-gold to-kingdom-red rounded-full" />
+          <div className="w-10 h-0.5 bg-kingdom-red/20 rounded-full" />
+        </div>
+        <p className="font-body text-kingdom-charcoal/40 mt-4">לחצו על טריטוריה כדי לחקור!</p>
       </div>
 
-      {/* Adi Guide */}
       <AdiGuide
         message={hoveredZone
           ? `בואו נחקור את ${hoveredZone}! שם מחכים הטרנדים הכי שווים!`
@@ -73,73 +72,84 @@ export default function KingdomMap({ categories }: KingdomMapProps) {
       {/* Map Grid */}
       <div className="grid grid-cols-4 gap-3 md:gap-4 mt-6 max-w-3xl mx-auto">
         {categories.map((cat, i) => {
-          const style = zoneStyles[i % zoneStyles.length]
-          const Icon = style.icon
+          const config = zoneConfigs[i % zoneConfigs.length]
+          const Icon = config.icon
 
           return (
-            <Link
+            <motion.div
               key={cat.id}
-              href={`/category/${cat.slug}`}
-              className={`
-                ${style.position}
-                relative group cursor-pointer
-                bg-gradient-to-br ${style.bg} ${style.hoverBg}
-                border-2 ${style.border}
-                rounded-2xl md:rounded-3xl p-4 md:p-6
-                transition-all duration-500
-                hover:scale-[1.03] hover:shadow-xl hover:shadow-kingdom-gold/10
-                hover:-translate-y-1
-              `}
-              onMouseEnter={() => setHoveredZone(style.terrain)}
-              onMouseLeave={() => setHoveredZone(null)}
+              className={config.span}
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ ...springPlayful, delay: i * 0.1 }}
             >
-              {/* Terrain decorations */}
-              <div className="absolute top-2 left-2 opacity-20 group-hover:opacity-40 transition-opacity">
-                <Icon className="w-6 h-6 md:w-8 md:h-8" />
-              </div>
+              <Link href={`/category/${cat.slug}`}>
+                <motion.div
+                  className={`
+                    relative group cursor-pointer
+                    bg-gradient-to-br ${config.gradient}
+                    border-2 ${config.border}
+                    rounded-2xl md:rounded-3xl p-4 md:p-6 h-full
+                  `}
+                  whileHover={{ scale: 1.04, y: -6 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={springPlayful}
+                  onHoverStart={() => setHoveredZone(config.terrain)}
+                  onHoverEnd={() => setHoveredZone(null)}
+                >
+                  <Icon className="absolute top-3 left-3 w-6 h-6 md:w-8 md:h-8 opacity-15 group-hover:opacity-30 transition-opacity" />
 
-              {/* Zone content */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[100px] md:min-h-[140px] text-center">
-                <span className="text-3xl md:text-5xl mb-2 group-hover:animate-bounce-in transition-transform">
-                  {style.emoji}
-                </span>
-                <h3 className="font-fun font-bold text-base md:text-xl text-kingdom-charcoal mb-1">
-                  {cat.name}
-                </h3>
-                <p className="text-[10px] md:text-xs text-kingdom-charcoal/50 font-fun">
-                  {style.terrain}
-                </p>
-              </div>
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[100px] md:min-h-[140px] text-center">
+                    <motion.span
+                      className="text-3xl md:text-5xl mb-2"
+                      whileHover={{ scale: 1.3, rotate: [0, -10, 10, 0] }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                    >
+                      {config.emoji}
+                    </motion.span>
+                    <h3 className="font-heading font-bold text-base md:text-xl text-kingdom-charcoal mb-1">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[10px] md:text-xs text-kingdom-charcoal/40 font-body">
+                      {config.terrain}
+                    </p>
+                  </div>
 
-              {/* Sparkle on hover */}
-              <Sparkles className="absolute bottom-2 right-2 w-4 h-4 text-kingdom-gold opacity-0 group-hover:opacity-100 group-hover:animate-sparkle transition-opacity" />
-
-              {/* Connecting paths (decorative dots) */}
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-1 opacity-30">
-                <div className="w-1.5 h-1.5 rounded-full bg-kingdom-gold" />
-                <div className="w-1.5 h-1.5 rounded-full bg-kingdom-gold" />
-                <div className="w-1.5 h-1.5 rounded-full bg-kingdom-gold" />
-              </div>
-            </Link>
+                  <Sparkles className="absolute bottom-2 right-2 w-4 h-4 text-kingdom-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.div>
+              </Link>
+            </motion.div>
           )
         })}
 
-        {/* Games Zone — Always visible */}
-        <Link
-          href="/games"
-          className="col-span-4 relative group cursor-pointer bg-gradient-to-l from-kingdom-red/10 via-kingdom-gold/10 to-kingdom-purple/10 border-2 border-dashed border-kingdom-gold/50 rounded-2xl md:rounded-3xl p-4 md:p-5 transition-all duration-500 hover:scale-[1.02] hover:border-kingdom-gold hover:shadow-lg"
-          onMouseEnter={() => setHoveredZone('זירת המשחקים')}
-          onMouseLeave={() => setHoveredZone(null)}
+        {/* Games Zone */}
+        <motion.div
+          className="col-span-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
         >
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-2xl md:text-3xl">🎮</span>
-            <div className="text-center">
-              <h3 className="font-bubble text-lg md:text-2xl text-kingdom-charcoal">זירת המשחקים</h3>
-              <p className="text-xs text-kingdom-charcoal/50 font-fun">גלגל מזל, מבוך, ציד אוצרות ועוד!</p>
-            </div>
-            <span className="text-2xl md:text-3xl">🎡</span>
-          </div>
-        </Link>
+          <Link href="/games">
+            <motion.div
+              className="bg-gradient-to-l from-kingdom-red/8 via-kingdom-gold/8 to-kingdom-purple/8 border-2 border-dashed border-kingdom-gold/40 rounded-2xl md:rounded-3xl p-4 md:p-5 cursor-pointer"
+              whileHover={{ scale: 1.02, borderColor: 'rgba(255,215,0,0.8)' }}
+              whileTap={{ scale: 0.98 }}
+              onHoverStart={() => setHoveredZone('זירת המשחקים')}
+              onHoverEnd={() => setHoveredZone(null)}
+            >
+              <div className="flex items-center justify-center gap-3">
+                <span className="text-2xl md:text-3xl">🎮</span>
+                <div className="text-center">
+                  <h3 className="font-bubble text-lg md:text-2xl text-kingdom-charcoal">זירת המשחקים</h3>
+                  <p className="text-xs text-kingdom-charcoal/40 font-body">גלגל מזל, מבוך, ציד אוצרות ועוד!</p>
+                </div>
+                <span className="text-2xl md:text-3xl">🎡</span>
+              </div>
+            </motion.div>
+          </Link>
+        </motion.div>
       </div>
     </div>
   )

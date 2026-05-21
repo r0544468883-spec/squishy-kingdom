@@ -3,17 +3,22 @@ import KingdomFooter from '@/components/layout/KingdomFooter'
 import MobileBottomNav from '@/components/layout/MobileBottomNav'
 import { CartProvider } from '@/context/CartContext'
 import SlideOverCart from '@/components/cart/SlideOverCart'
+import SmoothScroll from '@/components/providers/SmoothScroll'
+import ExitIntentPopup from '@/components/effects/ExitIntentPopup'
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
     <CartProvider>
-      <KingdomHeader />
-      <main className="flex-1 bg-kingdom-cream min-h-screen">
-        {children}
-      </main>
-      <SlideOverCart />
-      <KingdomFooter />
-      <MobileBottomNav />
+      <SmoothScroll>
+        <KingdomHeader />
+        <main className="flex-1 bg-kingdom-cream min-h-screen">
+          {children}
+        </main>
+        <SlideOverCart />
+        <ExitIntentPopup />
+        <KingdomFooter />
+        <MobileBottomNav />
+      </SmoothScroll>
     </CartProvider>
   )
 }

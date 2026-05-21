@@ -19,7 +19,7 @@ function SuccessContent() {
         <PartyPopper className="w-8 h-8 text-kingdom-red-light absolute top-0 left-1/4 animate-sparkle" style={{ animationDelay: '0.5s' }} />
       </div>
 
-      <h1 className="font-bubble text-3xl md:text-4xl text-kingdom-charcoal mb-3">
+      <h1 className="font-heading text-3xl md:text-4xl text-kingdom-charcoal mb-3">
         ההזמנה התקבלה!
       </h1>
 
@@ -60,7 +60,7 @@ function SuccessContent() {
 
       {/* UGC Prompt */}
       <div className="mt-12 bg-kingdom-gold/10 rounded-2xl p-6">
-        <p className="font-bubble text-lg text-kingdom-charcoal mb-2">
+        <p className="font-heading text-lg text-kingdom-charcoal mb-2">
           תייגו אותנו בטיקטוק!
         </p>
         <p className="text-sm text-kingdom-charcoal/60">

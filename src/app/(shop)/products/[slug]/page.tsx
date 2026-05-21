@@ -116,7 +116,7 @@ export default function ProductDetailPage() {
 
         {/* Product Info */}
         <div>
-          <h1 className="font-bubble text-2xl md:text-4xl text-kingdom-charcoal mb-3">
+          <h1 className="font-heading text-2xl md:text-4xl text-kingdom-charcoal mb-3">
             {product.name}
           </h1>
 

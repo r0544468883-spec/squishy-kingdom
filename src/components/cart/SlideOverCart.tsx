@@ -42,7 +42,7 @@ export default function SlideOverCart() {
         <div className="flex items-center justify-between p-4 bg-kingdom-red border-b-2 border-kingdom-gold">
           <div className="flex items-center gap-2 text-kingdom-gold">
             <ShoppingBag className="w-5 h-5" />
-            <span className="font-bubble text-lg">העגלה המלכותית</span>
+            <span className="font-heading text-lg">העגלה המלכותית</span>
             <span className="bg-kingdom-gold text-kingdom-charcoal text-xs font-bold px-2 py-0.5 rounded-full">
               {itemCount}
             </span>
@@ -67,7 +67,7 @@ export default function SlideOverCart() {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <ShoppingBag className="w-16 h-16 text-kingdom-gold/30 mb-4" />
-              <p className="font-bubble text-lg text-kingdom-charcoal mb-2">העגלה ריקה!</p>
+              <p className="font-heading text-lg text-kingdom-charcoal mb-2">העגלה ריקה!</p>
               <p className="text-kingdom-charcoal/50 text-sm mb-6">הממלכה מחכה לך...</p>
               <RoyalButton variant="gold" onClick={() => setCartOpen(false)}>
                 לחנות

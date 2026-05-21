@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik+Bubbles&family=Fredoka:wght@400;500;600;700&family=Suez+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700;800;900&family=Rubik+Bubbles&family=Fredoka:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #FFF8F0;
+  --background: #FFFAF5;
   --foreground: #1A1A2E;
 
   /* Kingdom Colors — Ruby Red + Royal Gold */
@@ -13,7 +13,7 @@
   --kingdom-gold: #FFD700;
   --kingdom-gold-dark: #DAA520;
   --kingdom-gold-light: #FFE44D;
-  --kingdom-cream: #FFF8F0;
+  --kingdom-cream: #FFFAF5;
   --kingdom-parchment: #FFF0E0;
   --kingdom-purple: #581C87;
   --kingdom-purple-light: #7C3AED;
@@ -25,7 +25,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-kingdom-red: var(--kingdom-red);
   --color-kingdom-red-light: var(--kingdom-red-light);
   --color-kingdom-red-hover: var(--kingdom-red-hover);
@@ -40,199 +39,66 @@
   --color-kingdom-emerald: var(--kingdom-emerald);
   --color-kingdom-charcoal: var(--kingdom-charcoal);
   --color-kingdom-pink: var(--kingdom-pink);
+  --font-body: 'Rubik', sans-serif;
+  --font-heading: 'Varela Round', sans-serif;
+  --font-fun: 'Fredoka', sans-serif;
+  --font-bubble: 'Rubik Bubbles', cursive;
+}
 
-  --font-heebo: 'Heebo', sans-serif;
-  --font-royal: 'Suez One', 'Heebo', serif;
-  --font-fun: 'Fredoka', 'Heebo', sans-serif;
-  --font-bubble: 'Rubik Bubbles', 'Heebo', cursive;
+/* ============================================
+   BASE
+   ============================================ */
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Fredoka', 'Heebo', Arial, sans-serif;
+  font-family: 'Rubik', sans-serif;
   direction: rtl;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Font classes */
-.font-royal { font-family: 'Suez One', 'Heebo', serif; }
-.font-fun { font-family: 'Fredoka', 'Heebo', sans-serif; }
-.font-bubble { font-family: 'Rubik Bubbles', 'Heebo', cursive; }
+/* Font utility classes */
+.font-heading { font-family: 'Varela Round', sans-serif; }
+.font-body { font-family: 'Rubik', sans-serif; }
+.font-fun { font-family: 'Fredoka', sans-serif; }
+.font-bubble { font-family: 'Rubik Bubbles', cursive; }
 
 /* ============================================
-   ANIMATIONS — Kingdom Magic
+   TYPOGRAPHY — Premium Scale (clamp)
    ============================================ */
-
-@keyframes revealGlow {
-  0% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); transform: scale(0.5); opacity: 0; filter: brightness(0); }
-  40% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.8); transform: scale(1.1); filter: brightness(1.3); }
-  100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); transform: scale(1); opacity: 1; filter: brightness(1); }
+.text-hero {
+  font-family: 'Rubik Bubbles', cursive;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+.text-section {
+  font-family: 'Varela Round', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
 }
 
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-8px) rotate(2deg); }
-  66% { transform: translateY(-4px) rotate(-2deg); }
+.text-card-title {
+  font-family: 'Varela Round', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  line-height: 1.3;
 }
 
-@keyframes sparkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(255, 215, 0, 0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1) rotate(180deg); }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.05); }
-  70% { transform: scale(0.95); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes crownBounce {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  25% { transform: translateY(-15px) rotate(5deg); }
-  50% { transform: translateY(-8px) rotate(-3deg); }
-  75% { transform: translateY(-12px) rotate(3deg); }
-}
-
-.animate-reveal-glow { animation: revealGlow 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-float-slow { animation: floatSlow 5s ease-in-out infinite; }
-.animate-sparkle { animation: sparkle 1.5s ease-in-out infinite; }
-.animate-pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
-.animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
-.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-.animate-scale-in { animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-bounce-in { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-crown-bounce { animation: crownBounce 4s ease-in-out infinite; }
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradientShift 4s ease infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.4) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
-}
-
-/* Staggered children animations */
-.stagger-children > * { opacity: 0; animation: slideUp 0.5s ease-out forwards; }
-.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
-.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
-.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
-
-/* ============================================
-   KINGDOM CARD — Magical hover
-   ============================================ */
-.kingdom-card {
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  border-radius: 16px;
-  background: white;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.kingdom-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 50%, rgba(224, 17, 95, 0.05) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.kingdom-card:hover {
-  border-color: var(--kingdom-gold);
-  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15), 0 4px 15px rgba(224, 17, 95, 0.1);
-  transform: translateY(-6px) scale(1.02);
-}
-
-.kingdom-card:hover::before {
-  opacity: 1;
-}
-
-/* ============================================
-   SHADOW / SILHOUETTE for unrevealed products
-   ============================================ */
-.squishi-shadow {
-  filter: brightness(0) saturate(100%);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.squishi-shadow:hover {
-  filter: brightness(0) saturate(100%) drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
-  transform: scale(1.05) rotate(-2deg);
-}
-
-/* ============================================
-   HERO GRADIENT — Living, breathing background
-   ============================================ */
-.hero-gradient {
-  background: linear-gradient(135deg, #900C3F 0%, #E0115F 25%, #C70039 50%, #581C87 75%, #900C3F 100%);
-  background-size: 300% 300%;
-  animation: gradientShift 8s ease infinite;
+.text-price {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
 }
 
 /* ============================================
    GOLD SHIMMER TEXT
    ============================================ */
 .text-gold-shimmer {
-  background: linear-gradient(90deg, #FFD700, #FFF4B8, #DAA520, #FFD700);
+  background: linear-gradient(90deg, #FFD700 0%, #FFF4B8 25%, #DAA520 50%, #FFD700 75%, #FFF4B8 100%);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -241,84 +107,116 @@ body {
 }
 
 /* ============================================
-   MAGICAL BUTTON EFFECTS
+   HERO GRADIENT
+   ============================================ */
+.hero-gradient {
+  background: linear-gradient(135deg, #900C3F 0%, #E0115F 30%, #C70039 60%, #581C87 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+/* ============================================
+   KINGDOM CARD — Framer Motion handles hover,
+   this is the base style only
+   ============================================ */
+.kingdom-card {
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 20px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   SHADOW / SILHOUETTE
+   ============================================ */
+.squishi-shadow {
+  filter: brightness(0) saturate(100%);
+  transition: filter 0.5s ease;
+}
+
+/* ============================================
+   BUTTON SWEEP EFFECT
    ============================================ */
 .btn-magic {
   position: relative;
   overflow: hidden;
 }
-
 .btn-magic::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
   transform: translateX(-100%) rotate(45deg);
   transition: transform 0.6s ease;
 }
-
 .btn-magic:hover::after {
   transform: translateX(100%) rotate(45deg);
 }
 
 /* ============================================
-   SPARKLE DOTS (pseudo-elements for decoration)
-   ============================================ */
-.sparkle-bg {
-  position: relative;
-}
-
-.sparkle-bg::before,
-.sparkle-bg::after {
-  content: '✦';
-  position: absolute;
-  color: rgba(255, 215, 0, 0.3);
-  font-size: 20px;
-  animation: twinkle 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.sparkle-bg::before {
-  top: 10%;
-  right: 5%;
-  animation-delay: 0s;
-}
-
-.sparkle-bg::after {
-  bottom: 15%;
-  left: 8%;
-  animation-delay: 1.5s;
-}
-
-/* ============================================
-   SCROLLBAR — Kingdom themed
-   ============================================ */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--kingdom-cream); }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--kingdom-gold), var(--kingdom-gold-dark)); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--kingdom-gold); }
-
-/* ============================================
-   GLASS EFFECT (for overlays)
-   ============================================ */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* ============================================
-   DECORATIVE PATTERNS
+   PATTERNS
    ============================================ */
 .pattern-dots {
-  background-image: radial-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .pattern-hearts {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='rgba(224,17,95,0.06)'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
-  background-size: 40px 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='rgba(224,17,95,0.04)'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+  background-size: 48px 48px;
+}
+
+/* Noise overlay for premium feel */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS (CSS fallbacks)
+   Framer Motion handles most animations now,
+   these are for non-interactive elements only
+   ============================================ */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+}
+
+.animate-pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--kingdom-gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--kingdom-gold); }
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+.skeleton {
+  background: linear-gradient(90deg, #f0e6d6 25%, #faf0e4 50%, #f0e6d6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 12px;
 }

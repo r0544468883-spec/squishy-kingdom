@@ -13,7 +13,7 @@ export default function EmptyState({ title, description, actionLabel, actionHref
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
       <Crown className="w-16 h-16 text-kingdom-gold/30 mb-4" />
-      <h3 className="font-bubble text-xl text-kingdom-charcoal mb-2">{title}</h3>
+      <h3 className="font-heading text-xl text-kingdom-charcoal mb-2">{title}</h3>
       {description && <p className="text-kingdom-charcoal/60 text-sm mb-6 max-w-md">{description}</p>}
       {actionLabel && actionHref && (
         <Link href={actionHref}>
