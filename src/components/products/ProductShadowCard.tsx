@@ -35,7 +35,7 @@ export default function ProductShadowCard({ product }: ProductShadowCardProps) {
         </div>
 
         {/* Teaser Text */}
-        <p className="font-[Secular_One] text-kingdom-charcoal text-sm md:text-base">
+        <p className="font-bubble text-kingdom-charcoal text-sm md:text-base">
           מה מסתתר כאן?
         </p>
         <p className="text-kingdom-charcoal/50 text-xs mt-1">לחצו לגלות!</p>

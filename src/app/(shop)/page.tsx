@@ -13,12 +13,15 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import RoyalButton from '@/components/ui/RoyalButton'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import MagicParticles from '@/components/effects/MagicParticles'
+import CastleGates from '@/components/effects/CastleGates'
+import KingdomMap from '@/components/kingdom/KingdomMap'
 
 export default function HomePage() {
   const [featured, setFeatured] = useState<Product[]>([])
   const [newProducts, setNewProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
+  const [gatesOpen, setGatesOpen] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -44,6 +47,8 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* Castle Gates — First Visit Experience */}
+      {!gatesOpen && <CastleGates onEnter={() => setGatesOpen(true)} />}
       {/* ============================================
           HERO — Immersive Kingdom Gates
           ============================================ */}
@@ -68,7 +73,7 @@ export default function HomePage() {
           </div>
 
           {/* Title */}
-          <h1 className="font-[Secular_One] text-4xl md:text-7xl lg:text-8xl mb-4 leading-tight animate-slide-up text-gold-shimmer">
+          <h1 className="font-bubble text-4xl md:text-7xl lg:text-8xl mb-4 leading-tight animate-slide-up text-gold-shimmer">
             הממלכה של עדי
           </h1>
 
@@ -135,6 +140,15 @@ export default function HomePage() {
       )}
 
       {/* ============================================
+          KINGDOM MAP — Pokemon-style territory exploration
+          ============================================ */}
+      {categories.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <KingdomMap categories={categories} />
+        </section>
+      )}
+
+      {/* ============================================
           NEW ARRIVALS
           ============================================ */}
       {newProducts.length > 0 && (
@@ -167,7 +181,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pattern-hearts opacity-20" />
           <div className="max-w-7xl mx-auto px-4 py-14 md:py-20 text-center relative z-10">
             <Crown className="w-10 h-10 text-kingdom-red mx-auto mb-4 animate-float" />
-            <h2 className="font-[Secular_One] text-2xl md:text-4xl text-kingdom-red-deep mb-3">
+            <h2 className="font-bubble text-2xl md:text-4xl text-kingdom-red-deep mb-3">
               הצטרפו למשפחת הממלכה!
             </h2>
             <p className="text-kingdom-red-deep/70 mb-8 text-lg max-w-md mx-auto">
@@ -189,7 +203,7 @@ export default function HomePage() {
       {featured.length === 0 && newProducts.length === 0 && (
         <section className="max-w-7xl mx-auto px-4 py-24 text-center">
           <Crown className="w-24 h-24 text-kingdom-gold/30 mx-auto mb-6 animate-crown-bounce" />
-          <h2 className="font-[Secular_One] text-3xl text-kingdom-charcoal mb-4">
+          <h2 className="font-bubble text-3xl text-kingdom-charcoal mb-4">
             הממלכה בהכנות!
           </h2>
           <p className="text-kingdom-charcoal/60 max-w-md mx-auto text-lg mb-8">

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik+Bubbles&family=Fredoka:wght@400;500;600;700&family=Suez+One&display=swap');
 
 :root {
   --background: #FFF8F0;
@@ -42,16 +42,23 @@
   --color-kingdom-pink: var(--kingdom-pink);
 
   --font-heebo: 'Heebo', sans-serif;
-  --font-royal: 'Secular One', sans-serif;
+  --font-royal: 'Suez One', 'Heebo', serif;
+  --font-fun: 'Fredoka', 'Heebo', sans-serif;
+  --font-bubble: 'Rubik Bubbles', 'Heebo', cursive;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Heebo', Arial, sans-serif;
+  font-family: 'Fredoka', 'Heebo', Arial, sans-serif;
   direction: rtl;
   overflow-x: hidden;
 }
+
+/* Font classes */
+.font-royal { font-family: 'Suez One', 'Heebo', serif; }
+.font-fun { font-family: 'Fredoka', 'Heebo', sans-serif; }
+.font-bubble { font-family: 'Rubik Bubbles', 'Heebo', cursive; }
 
 /* ============================================
    ANIMATIONS — Kingdom Magic

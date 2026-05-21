@@ -13,7 +13,7 @@ export default function SectionTitle({ title, subtitle, className = '' }: Sectio
         <Sparkles className="w-5 h-5 text-kingdom-gold animate-sparkle" />
         <Sparkles className="w-3 h-3 text-kingdom-pink animate-sparkle" style={{ animationDelay: '0.5s' }} />
       </div>
-      <h2 className="font-[Secular_One] text-2xl md:text-4xl lg:text-5xl text-kingdom-charcoal">
+      <h2 className="font-bubble text-2xl md:text-4xl lg:text-5xl text-kingdom-charcoal">
         {title}
       </h2>
       <div className="flex items-center justify-center gap-2 mt-4">

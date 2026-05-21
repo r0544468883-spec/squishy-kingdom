@@ -16,7 +16,7 @@ export default function KingdomHeader() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <Crown className="w-7 h-7 text-kingdom-gold group-hover:animate-float drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]" />
-            <span className="font-[Secular_One] text-xl md:text-2xl text-gold-shimmer">
+            <span className="font-bubble text-xl md:text-2xl text-gold-shimmer">
               הממלכה של עדי
             </span>
           </Link>

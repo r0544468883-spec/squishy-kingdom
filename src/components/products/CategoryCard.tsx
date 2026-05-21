@@ -26,7 +26,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
           <span className="text-3xl">👑</span>
         </div>
       )}
-      <h3 className="font-[Secular_One] text-sm md:text-base text-kingdom-charcoal group-hover:text-kingdom-red transition-colors">
+      <h3 className="font-bubble text-sm md:text-base text-kingdom-charcoal group-hover:text-kingdom-red transition-colors">
         {category.name}
       </h3>
     </Link>

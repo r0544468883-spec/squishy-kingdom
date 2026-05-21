@@ -105,7 +105,7 @@ export default function SquishiRevealModal({ product, onClose }: SquishiRevealMo
         <div className={`p-5 md:p-6 transition-all duration-700 ${
           phase === 'revealed' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          <h2 className="font-[Secular_One] text-xl md:text-2xl text-kingdom-charcoal mb-1">
+          <h2 className="font-bubble text-xl md:text-2xl text-kingdom-charcoal mb-1">
             {product.name}
           </h2>
 
