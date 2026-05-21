@@ -26,6 +26,7 @@ export default function KingdomHeader() {
             {[
               { href: '/', label: 'ראשי' },
               { href: '/products', label: 'החנות' },
+              { href: '/games', label: 'משחקים' },
             ].map(link => (
               <Link
                 key={link.href}
@@ -78,6 +79,7 @@ export default function KingdomHeader() {
             {[
               { href: '/', label: 'ראשי' },
               { href: '/products', label: 'החנות' },
+              { href: '/games', label: 'משחקים' },
               { href: '/search', label: 'חיפוש', icon: Search },
             ].map(link => (
               <Link
