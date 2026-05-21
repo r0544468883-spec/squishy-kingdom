@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Crown, MessageCircle, ArrowLeft, Sparkles } from 'lucide-react'
+import { Crown, MessageCircle, ArrowLeft, Sparkles, Star, Heart } from 'lucide-react'
 import { Product, Category } from '@/types'
 import { getFeaturedProducts, getNewProducts } from '@/lib/products'
 import { getCategories } from '@/lib/categories'
@@ -12,6 +12,7 @@ import CategoryCard from '@/components/products/CategoryCard'
 import SectionTitle from '@/components/ui/SectionTitle'
 import RoyalButton from '@/components/ui/RoyalButton'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
+import MagicParticles from '@/components/effects/MagicParticles'
 
 export default function HomePage() {
   const [featured, setFeatured] = useState<Product[]>([])
@@ -43,45 +44,70 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative bg-kingdom-red overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-32 h-32 border-2 border-kingdom-gold rounded-full" />
-          <div className="absolute bottom-10 left-20 w-24 h-24 border-2 border-kingdom-gold rounded-full" />
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 border-2 border-kingdom-gold rounded-full" />
-        </div>
+      {/* ============================================
+          HERO — Immersive Kingdom Gates
+          ============================================ */}
+      <section className="relative hero-gradient overflow-hidden min-h-[85vh] md:min-h-[90vh] flex items-center justify-center">
+        {/* Magic Particles */}
+        <MagicParticles />
 
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-28 text-center relative">
-          <Crown className="w-16 h-16 md:w-20 md:h-20 text-kingdom-gold mx-auto mb-6 animate-float" />
+        {/* Decorative elements */}
+        <div className="absolute inset-0 pattern-hearts opacity-30" />
 
-          <h1 className="font-[Secular_One] text-3xl md:text-6xl text-kingdom-gold mb-4 leading-tight">
-            ברוכים הבאים לממלכה של עדי
+        {/* Floating decorations */}
+        <Star className="absolute top-[15%] right-[10%] w-6 h-6 text-kingdom-gold/40 animate-sparkle" />
+        <Star className="absolute top-[25%] left-[15%] w-4 h-4 text-kingdom-gold/30 animate-sparkle" style={{ animationDelay: '0.7s' }} />
+        <Heart className="absolute bottom-[30%] right-[20%] w-5 h-5 text-kingdom-pink/30 animate-float-slow" />
+        <Star className="absolute bottom-[20%] left-[10%] w-5 h-5 text-kingdom-gold/30 animate-sparkle" style={{ animationDelay: '1.4s' }} />
+        <Crown className="absolute top-[10%] left-[30%] w-8 h-8 text-kingdom-gold/20 animate-float-slow" style={{ animationDelay: '0.5s' }} />
+
+        <div className="max-w-7xl mx-auto px-4 py-16 text-center relative z-20">
+          {/* Crown animation */}
+          <div className="mb-8 animate-bounce-in">
+            <Crown className="w-20 h-20 md:w-28 md:h-28 text-kingdom-gold mx-auto animate-crown-bounce drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]" />
+          </div>
+
+          {/* Title */}
+          <h1 className="font-[Secular_One] text-4xl md:text-7xl lg:text-8xl mb-4 leading-tight animate-slide-up text-gold-shimmer">
+            הממלכה של עדי
           </h1>
 
-          <p className="text-white/80 text-lg md:text-xl mb-8 max-w-xl mx-auto">
-            הטרנדים הכי חמים — סקווישים, פידג&apos;טס, נידו ועוד.
-            ישר מהארמון אליכם הביתה!
+          <p className="text-white/90 text-lg md:text-2xl mb-4 max-w-2xl mx-auto animate-slide-up font-light" style={{ animationDelay: '0.15s' }}>
+            חנות הטרנדים הסודית
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <p className="text-white/60 text-base md:text-lg mb-10 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.25s' }}>
+            סקווישים, פידג&apos;טס, נידו ועוד — ישר מהארמון אליכם הביתה!
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.35s' }}>
             <Link href="/products">
-              <RoyalButton variant="gold" size="xl">
-                <Sparkles className="w-5 h-5" />
+              <RoyalButton variant="gold" size="xl" className="btn-magic animate-pulse-gold text-lg">
+                <Sparkles className="w-6 h-6" />
                 כניסה לממלכה
               </RoyalButton>
             </Link>
           </div>
+
+          {/* Scroll hint */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+              <div className="w-1.5 h-3 bg-white/50 rounded-full animate-slide-up" />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Featured Products — THE SQUISHI */}
+      {/* ============================================
+          FEATURED — THE SQUISHI Reveal
+          ============================================ */}
       {featured.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 py-12 md:py-20">
+        <section className="relative max-w-7xl mx-auto px-4 py-16 md:py-24 sparkle-bg">
           <SectionTitle
             title="מה מסתתר בממלכה?"
-            subtitle="לחצו על הצללית כדי לגלות את הטרנד!"
+            subtitle="לחצו על הצללית כדי לגלות את הטרנד הבא!"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 stagger-children">
             {featured.map(product => (
               <ProductShadowCard key={product.id} product={product} />
             ))}
@@ -89,73 +115,93 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Categories */}
+      {/* ============================================
+          CATEGORIES — Kingdom Rooms
+          ============================================ */}
       {categories.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 py-12 md:py-20">
-          <SectionTitle
-            title="חדרי הממלכה"
-            subtitle="בחרו חדר ותגלו את האוצרות שבפנים"
-          />
-          <div className="flex md:grid md:grid-cols-4 gap-3 md:gap-6 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
-            {categories.map(cat => (
-              <CategoryCard key={cat.id} category={cat} />
-            ))}
+        <section className="relative py-16 md:py-24 pattern-dots">
+          <div className="max-w-7xl mx-auto px-4">
+            <SectionTitle
+              title="חדרי הממלכה"
+              subtitle="בחרו חדר ותגלו את האוצרות שבפנים"
+            />
+            <div className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 stagger-children">
+              {categories.map(cat => (
+                <CategoryCard key={cat.id} category={cat} />
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* New Arrivals */}
+      {/* ============================================
+          NEW ARRIVALS
+          ============================================ */}
       {newProducts.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 py-12 md:py-20">
+        <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <SectionTitle
-            title="הגיעו לארמון!"
-            subtitle="המוצרים החדשים ביותר בממלכה"
+            title="חדש בממלכה!"
+            subtitle="המוצרים החדשים ביותר — הגיעו ישר מהארמון"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 stagger-children">
             {newProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <div className="text-center mt-8">
+          <div className="text-center mt-10">
             <Link href="/products">
-              <RoyalButton variant="secondary" size="lg">
+              <RoyalButton variant="secondary" size="lg" className="btn-magic">
                 <ArrowLeft className="w-5 h-5" />
-                לכל המוצרים
+                לכל המוצרים בממלכה
               </RoyalButton>
             </Link>
           </div>
         </section>
       )}
 
-      {/* WhatsApp CTA */}
-      <section className="bg-kingdom-gold">
-        <div className="max-w-7xl mx-auto px-4 py-12 md:py-16 text-center">
-          <h2 className="font-[Secular_One] text-2xl md:text-3xl text-kingdom-charcoal mb-3">
-            הצטרפו לקבוצת הממלכה בוואטסאפ!
-          </h2>
-          <p className="text-kingdom-charcoal/70 mb-6">
-            קבלו עדכונים על טרנדים חדשים, מבצעים והפתעות ישר לנייד
-          </p>
-          <a href="https://wa.me/972XXXXXXXXX" target="_blank" rel="noopener noreferrer">
-            <RoyalButton variant="whatsapp" size="xl">
-              <MessageCircle className="w-6 h-6" />
-              הצטרפו עכשיו
-            </RoyalButton>
-          </a>
+      {/* ============================================
+          WHATSAPP CTA — Golden banner
+          ============================================ */}
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-l from-kingdom-gold via-kingdom-gold-light to-kingdom-gold">
+          <div className="absolute inset-0 pattern-hearts opacity-20" />
+          <div className="max-w-7xl mx-auto px-4 py-14 md:py-20 text-center relative z-10">
+            <Crown className="w-10 h-10 text-kingdom-red mx-auto mb-4 animate-float" />
+            <h2 className="font-[Secular_One] text-2xl md:text-4xl text-kingdom-red-deep mb-3">
+              הצטרפו למשפחת הממלכה!
+            </h2>
+            <p className="text-kingdom-red-deep/70 mb-8 text-lg max-w-md mx-auto">
+              קבלו עדכונים על טרנדים חדשים, מבצעים סודיים והפתעות ישר לוואטסאפ
+            </p>
+            <a href="https://wa.me/972XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+              <RoyalButton variant="whatsapp" size="xl" className="btn-magic shadow-xl shadow-green-500/20">
+                <MessageCircle className="w-6 h-6" />
+                הצטרפו עכשיו בוואטסאפ
+              </RoyalButton>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Empty State — if no products yet */}
+      {/* ============================================
+          EMPTY STATE — if no products yet
+          ============================================ */}
       {featured.length === 0 && newProducts.length === 0 && (
-        <section className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <Crown className="w-20 h-20 text-kingdom-gold/30 mx-auto mb-6" />
-          <h2 className="font-[Secular_One] text-2xl text-kingdom-charcoal mb-3">
+        <section className="max-w-7xl mx-auto px-4 py-24 text-center">
+          <Crown className="w-24 h-24 text-kingdom-gold/30 mx-auto mb-6 animate-crown-bounce" />
+          <h2 className="font-[Secular_One] text-3xl text-kingdom-charcoal mb-4">
             הממלכה בהכנות!
           </h2>
-          <p className="text-kingdom-charcoal/60 max-w-md mx-auto">
+          <p className="text-kingdom-charcoal/60 max-w-md mx-auto text-lg mb-8">
             בקרוב מאוד הממלכה תיפתח עם הטרנדים הכי חמים.
             הצטרפו לוואטסאפ כדי לדעת ראשונים!
           </p>
+          <a href="https://wa.me/972XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+            <RoyalButton variant="whatsapp" size="xl" className="btn-magic">
+              <MessageCircle className="w-6 h-6" />
+              עדכנו אותי כשנפתח!
+            </RoyalButton>
+          </a>
         </section>
       )}
     </div>

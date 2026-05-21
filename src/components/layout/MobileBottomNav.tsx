@@ -17,7 +17,7 @@ export default function MobileBottomNav() {
   const { itemCount, setCartOpen } = useCart()
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-kingdom-red border-t-2 border-kingdom-gold pb-[env(safe-area-inset-bottom)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-l from-kingdom-red-deep via-kingdom-red to-kingdom-red-deep border-t-2 border-kingdom-gold/40 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(224,17,95,0.3)]">
       <div className="flex items-center justify-around h-16">
         {navItems.map((item) => {
           const isActive = pathname === item.href
@@ -30,13 +30,15 @@ export default function MobileBottomNav() {
                 onClick={() => setCartOpen(true)}
                 className="flex flex-col items-center justify-center gap-0.5 w-16 h-full cursor-pointer relative"
               >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-kingdom-gold' : 'text-white/70'}`} />
+                <div className={`p-1.5 rounded-xl transition-all ${isActive ? 'bg-kingdom-gold/20' : ''}`}>
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-kingdom-gold' : 'text-white/60'}`} />
+                </div>
                 {itemCount > 0 && (
-                  <span className="absolute top-1.5 right-2.5 bg-kingdom-gold text-kingdom-charcoal text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute top-1 right-2 bg-kingdom-gold text-kingdom-charcoal text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-lg shadow-kingdom-gold/40">
                     {itemCount}
                   </span>
                 )}
-                <span className={`text-[10px] ${isActive ? 'text-kingdom-gold font-bold' : 'text-white/70'}`}>
+                <span className={`text-[10px] ${isActive ? 'text-kingdom-gold font-bold' : 'text-white/60'}`}>
                   {item.label}
                 </span>
               </button>
@@ -49,8 +51,10 @@ export default function MobileBottomNav() {
               href={item.href}
               className="flex flex-col items-center justify-center gap-0.5 w-16 h-full"
             >
-              <Icon className={`w-5 h-5 ${isActive ? 'text-kingdom-gold' : 'text-white/70'}`} />
-              <span className={`text-[10px] ${isActive ? 'text-kingdom-gold font-bold' : 'text-white/70'}`}>
+              <div className={`p-1.5 rounded-xl transition-all ${isActive ? 'bg-kingdom-gold/20' : ''}`}>
+                <Icon className={`w-5 h-5 ${isActive ? 'text-kingdom-gold' : 'text-white/60'}`} />
+              </div>
+              <span className={`text-[10px] ${isActive ? 'text-kingdom-gold font-bold' : 'text-white/60'}`}>
                 {item.label}
               </span>
             </Link>
