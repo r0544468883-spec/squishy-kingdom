@@ -1,25 +1,27 @@
 import { createClient } from '@/lib/supabase/client'
 import { Product } from '@/types'
 
-const supabase = createClient()
+function getSupabase() {
+  return createClient()
+}
 
-export async function getProducts(categorySlug?: string): Promise<Product[]> {
-  let query = supabase
+export async function getProducts(): Promise<Product[]> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
     .from('products')
     .select('*, category:categories(*)')
     .eq('is_active', true)
     .order('sort_order', { ascending: true })
 
-  if (categorySlug) {
-    query = query.eq('category.slug', categorySlug)
+  if (error) {
+    console.error('[getProducts] Supabase error:', error.message, error.code)
+    return []
   }
-
-  const { data, error } = await query
-  if (error) throw error
   return (data || []) as unknown as Product[]
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const supabase = getSupabase()
   const { data, error } = await supabase
     .from('products')
     .select('*, category:categories(*)')
@@ -27,11 +29,15 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     .eq('is_active', true)
     .single()
 
-  if (error) return null
+  if (error) {
+    console.error('[getProductBySlug] Supabase error:', error.message)
+    return null
+  }
   return data as unknown as Product
 }
 
 export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
+  const supabase = getSupabase()
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -39,11 +45,15 @@ export async function getProductsByCategory(categoryId: string): Promise<Product
     .eq('is_active', true)
     .order('sort_order', { ascending: true })
 
-  if (error) throw error
+  if (error) {
+    console.error('[getProductsByCategory] Supabase error:', error.message)
+    return []
+  }
   return (data || []) as unknown as Product[]
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
+  const supabase = getSupabase()
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -52,11 +62,15 @@ export async function getFeaturedProducts(): Promise<Product[]> {
     .order('sort_order', { ascending: true })
     .limit(8)
 
-  if (error) throw error
+  if (error) {
+    console.error('[getFeaturedProducts] Supabase error:', error.message)
+    return []
+  }
   return (data || []) as unknown as Product[]
 }
 
 export async function getNewProducts(): Promise<Product[]> {
+  const supabase = getSupabase()
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -65,11 +79,15 @@ export async function getNewProducts(): Promise<Product[]> {
     .order('created_at', { ascending: false })
     .limit(8)
 
-  if (error) throw error
+  if (error) {
+    console.error('[getNewProducts] Supabase error:', error.message)
+    return []
+  }
   return (data || []) as unknown as Product[]
 }
 
 export async function searchProducts(query: string): Promise<Product[]> {
+  const supabase = getSupabase()
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -78,6 +96,9 @@ export async function searchProducts(query: string): Promise<Product[]> {
     .order('sort_order', { ascending: true })
     .limit(20)
 
-  if (error) throw error
+  if (error) {
+    console.error('[searchProducts] Supabase error:', error.message)
+    return []
+  }
   return (data || []) as unknown as Product[]
 }
