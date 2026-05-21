@@ -1,26 +1,129 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Secular+One&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFF8F0;
+  --foreground: #1A1A2E;
+
+  /* Kingdom Colors */
+  --kingdom-red: #8B0000;
+  --kingdom-red-light: #DC143C;
+  --kingdom-red-hover: #A50000;
+  --kingdom-gold: #FFD700;
+  --kingdom-gold-dark: #DAA520;
+  --kingdom-cream: #FFF8F0;
+  --kingdom-parchment: #F5E6D3;
+  --kingdom-purple: #4A0E4E;
+  --kingdom-emerald: #065F46;
+  --kingdom-charcoal: #1A1A2E;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Kingdom palette */
+  --color-kingdom-red: var(--kingdom-red);
+  --color-kingdom-red-light: var(--kingdom-red-light);
+  --color-kingdom-red-hover: var(--kingdom-red-hover);
+  --color-kingdom-gold: var(--kingdom-gold);
+  --color-kingdom-gold-dark: var(--kingdom-gold-dark);
+  --color-kingdom-cream: var(--kingdom-cream);
+  --color-kingdom-parchment: var(--kingdom-parchment);
+  --color-kingdom-purple: var(--kingdom-purple);
+  --color-kingdom-emerald: var(--kingdom-emerald);
+  --color-kingdom-charcoal: var(--kingdom-charcoal);
+
+  /* Fonts */
+  --font-heebo: 'Heebo', sans-serif;
+  --font-royal: 'Secular One', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Heebo', Arial, sans-serif;
+  direction: rtl;
+}
+
+/* Royal glow animation for THE SQUISHI reveal */
+@keyframes revealGlow {
+  0% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); transform: scale(0.8); opacity: 0; }
+  50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+  100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-reveal-glow {
+  animation: revealGlow 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.3) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Golden border for cards */
+.kingdom-card {
+  border: 2px solid var(--kingdom-gold-dark);
+  border-radius: 12px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.kingdom-card:hover {
+  border-color: var(--kingdom-gold);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Shadow/silhouette for unrevealed products */
+.squishi-shadow {
+  filter: brightness(0) saturate(100%);
+  transition: filter 0.6s ease;
+}
+
+.squishi-shadow:hover {
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kingdom-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kingdom-gold-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kingdom-gold);
 }
