@@ -6,7 +6,7 @@ import { ShoppingBag } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Product } from '@/types'
 import { useCart } from '@/hooks/useCart'
-import Badge from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import { cardHover, springBouncy } from '@/components/motion'
 
 interface ProductCardProps {
@@ -33,9 +33,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-contain p-4"
         />
         <div className="absolute top-2 right-2 flex gap-1.5">
-          {product.is_new && <Badge variant="new">חדש!</Badge>}
-          {product.compare_at_price && <Badge variant="sale">מבצע!</Badge>}
-          {product.stock_quantity <= 0 && <Badge variant="soldout">אזל!</Badge>}
+          {product.is_new && <Badge className="bg-kingdom-gold text-kingdom-charcoal">חדש!</Badge>}
+          {product.compare_at_price && <Badge className="bg-kingdom-red text-white">מבצע!</Badge>}
+          {product.stock_quantity <= 0 && <Badge className="bg-gray-500 text-white">אזל!</Badge>}
         </div>
       </Link>
 

@@ -1,23 +1,23 @@
-import KingdomHeader from '@/components/layout/KingdomHeader'
-import KingdomFooter from '@/components/layout/KingdomFooter'
-import MobileBottomNav from '@/components/layout/MobileBottomNav'
+'use client'
+
 import { CartProvider } from '@/context/CartContext'
-import SlideOverCart from '@/components/cart/SlideOverCart'
+import Header from '@/modules/layout/components/header'
+import Footer from '@/modules/layout/components/footer'
+import MobileNav from '@/modules/layout/components/mobile-nav'
+import CartDrawer from '@/modules/cart/components/cart-drawer'
 import SmoothScroll from '@/components/providers/SmoothScroll'
-import ExitIntentPopup from '@/components/effects/ExitIntentPopup'
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
     <CartProvider>
       <SmoothScroll>
-        <KingdomHeader />
-        <main className="flex-1 bg-kingdom-cream min-h-screen">
-          {children}
-        </main>
-        <SlideOverCart />
-        <ExitIntentPopup />
-        <KingdomFooter />
-        <MobileBottomNav />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <MobileNav />
+          <CartDrawer />
+        </div>
       </SmoothScroll>
     </CartProvider>
   )

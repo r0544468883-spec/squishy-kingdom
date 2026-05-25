@@ -10,7 +10,7 @@ import { getProductBySlug } from '@/lib/products'
 import { useCart } from '@/hooks/useCart'
 import { generateBuyForMeLink, generateShareProductLink } from '@/lib/whatsapp'
 import RoyalButton from '@/components/ui/RoyalButton'
-import Badge from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import EmptyState from '@/components/ui/EmptyState'
 
@@ -77,8 +77,8 @@ export default function ProductDetailPage() {
               priority
             />
             <div className="absolute top-3 right-3 flex gap-1.5">
-              {product.is_new && <Badge variant="new">חדש!</Badge>}
-              {product.compare_at_price && <Badge variant="sale">מבצע!</Badge>}
+              {product.is_new && <Badge className="bg-kingdom-gold text-kingdom-charcoal">חדש!</Badge>}
+              {product.compare_at_price && <Badge className="bg-kingdom-red text-white">מבצע!</Badge>}
             </div>
           </div>
 

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Rubik, Fredoka, Varela_Round } from "next/font/google";
+import { Rubik, Fredoka, Varela_Round, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const rubik = Rubik({
   subsets: ["latin", "hebrew"],
@@ -39,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he" dir="rtl" className={`h-full antialiased ${rubik.variable} ${fredoka.variable} ${varelaRound.variable}`}>
+    <html lang="he" dir="rtl" className={cn("h-full", "antialiased", rubik.variable, fredoka.variable, varelaRound.variable, "font-sans", geist.variable)}>
       <body className="min-h-full flex flex-col" style={{ fontFamily: "'Rubik', sans-serif" }}>
         {children}
       </body>

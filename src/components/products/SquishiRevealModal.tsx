@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Product } from '@/types'
 import { useCart } from '@/hooks/useCart'
 import RoyalButton from '@/components/ui/RoyalButton'
-import Badge from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 
 interface SquishiRevealModalProps {
   product: Product
@@ -85,8 +85,8 @@ export default function SquishiRevealModal({ product, onClose }: SquishiRevealMo
 
           {/* Badges */}
           <div className="absolute top-3 right-3 z-30 flex gap-1.5">
-            {product.is_new && <Badge variant="new">חדש!</Badge>}
-            {product.compare_at_price && <Badge variant="sale">מבצע!</Badge>}
+            {product.is_new && <Badge className="bg-kingdom-gold text-kingdom-charcoal">חדש!</Badge>}
+            {product.compare_at_price && <Badge className="bg-kingdom-red text-white">מבצע!</Badge>}
           </div>
 
           {/* Image Area */}
